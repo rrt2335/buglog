@@ -1,23 +1,30 @@
 <template>
   <div class="home">
-    <h1>Bug Log</h1>
     <router-link to="/info">Go to info page</router-link>
+    <!-- Input form below -->
     <form>
       <div class="form-group text-left m-3">
-        <label for="exampleInputEmail1">Which bug is giving you problems?</label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Enter email">
+        <label>Which bug is giving you problems?</label>
+        <input type="text" class="form-control shadow" id="exampleInputEmail1" aria-describedby="emailHelp"
+          placeholder="Name of bug...">
       </div>
       <div class="form-group text-left m-3">
-        <label for="exampleInputPassword1">Write your name below:</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Name...">
+        <label>Please give a detailed description of your bug:</label>
+        <input type="text" class="form-control shadow" id="exampleInputPassword1" placeholder="Description...">
       </div>
       <div class="form-group text-left m-3">
-        <label for="exampleInputPassword1">Please give a detailed description of your bug:</label>
-        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Description...">
+        <label>Write your name below:</label>
+        <input type="text" class="form-control shadow" id="exampleInputPassword1" placeholder="Name...">
       </div>
-      <button type="submit" class="btn btn-warning shadow">Submit</button>
+      <button type="submit" class="btn btn-warning shadow m-1">Submit</button>
+      <button type="reset" class="btn btn-outline-warning shadow m-1">Cancel</button>
     </form>
+    <div class="card m-3 text-left">
+      <div class="card-header">Title</div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">(BUG NAME)</li>
+      </ul>
+    </div>
   </div>
 </template>
 
@@ -29,3 +36,10 @@
     }
   }
 </script>
+
+<style>
+  label {
+    color: white;
+    text-shadow: 0 2px 0 black;
+  }
+</style>
