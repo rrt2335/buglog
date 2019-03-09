@@ -1,38 +1,62 @@
 <template>
-  <div class="home">
+  <div class="home container-fluid">
     <router-link to="/info">Go to info page</router-link>
     <!-- Input form below -->
-    <form>
-      <div class="form-group text-left m-3">
+    <form @submit.prevent="addBug">
+      <div class="form-group text-left ">
         <label>Which bug is giving you problems?</label>
-        <input type="text" class="form-control shadow" id="exampleInputEmail1" aria-describedby="emailHelp"
-          placeholder="Name of bug...">
+        <input v-model="newBug.title" type="text" class="form-control shadow" id="exampleInput"
+          placeholder="Name of bug..." required>
       </div>
-      <div class="form-group text-left m-3">
+      <div class="form-group text-left ">
         <label>Please give a detailed description of your bug:</label>
-        <input type="text" class="form-control shadow" id="exampleInputPassword1" placeholder="Description...">
+        <input v-model="newBug.description" type="text" class="form-control shadow" id="exampleInput"
+          placeholder="Description..." required>
       </div>
-      <div class="form-group text-left m-3">
+      <div class="form-group text-left">
         <label>Write your name below:</label>
-        <input type="text" class="form-control shadow" id="exampleInputPassword1" placeholder="Name...">
+        <input v-model="newBug.creator" type="text" class="form-control shadow" id="exampleInput" placeholder="Name..."
+          required>
       </div>
-      <button type="submit" class="btn btn-warning shadow m-1">Submit</button>
-      <button type="reset" class="btn btn-outline-warning shadow m-1">Cancel</button>
+      <button type="submit" class="btn btn-warning shadow m-2">Submit</button>
+      <button type="reset" class="btn btn-outline-warning shadow m-2">Clear</button>
     </form>
-    <div class="card m-3 text-left">
-      <div class="card-header">Title</div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">(BUG NAME)</li>
-      </ul>
-    </div>
+    {{newBug.title}}
+    <bugs></bugs>
   </div>
 </template>
 
 <script>
+  import Bugs from '@/components/Bugs.vue'
+  import Notes from '@/components/Notes.vue'
   export default {
-    name: 'home',
+    name: 'Home',
+    mounted() {
+      this.$store.dispatch('getBugs')
+    },
+    data() {
+      return {
+        newBug: {
+          creator: "",
+          description: "",
+          title: ""
+        }
+      }
+    },
+    computed: {
+      bugs() {
+        return this.$store.state.cars
+      }
+    },
+    methods: {
+      makeBugs() {
+        console.log(this.newBug)
+        this.$store.dispatch("addBug", this.newBug);
+      }
+    },
     components: {
-
+      Bugs,
+      Notes
     }
   }
 </script>
