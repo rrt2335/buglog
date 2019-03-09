@@ -12,9 +12,9 @@
                 </thead>
                 <tbody>
                     <tr v-for="bug in bugs" class="bg-success text-white">
-                        <td class="w-25">(DATE)</th>
-                        <td>((DATE))</td>
+                        <td class="w-25">{{Date()}}</th>
                         <td>{{bug.title}}</td>
+                        <td>{{bug.creator}}</td>
                         <td>(STATUS)</td>
                     </tr>
                 </tbody>
@@ -49,5 +49,7 @@
 
 
 <style>
-
+    tr {
+        cursor: pointer;
+    }
 </style>

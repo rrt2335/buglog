@@ -2,7 +2,7 @@
   <div class="home container-fluid">
     <router-link to="/info">Go to info page</router-link>
     <!-- Input form below -->
-    <form @submit.prevent="addBug">
+    <form @submit.prevent="makeBug">
       <div class="form-group text-left ">
         <label>Which bug is giving you problems?</label>
         <input v-model="newBug.title" type="text" class="form-control shadow" id="exampleInput"
@@ -49,7 +49,7 @@
       }
     },
     methods: {
-      makeBugs() {
+      makeBug() {
         console.log(this.newBug)
         this.$store.dispatch("addBug", this.newBug);
       }
