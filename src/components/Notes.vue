@@ -7,8 +7,8 @@
                 <p class="card-text">This is where the bug's description will go.</p>
             </div>
         </div>
-        <router-link to="/"><button class="btn m-3 btn-warning">
-            Close</button></router-link>
+        <router-link to="/"><button class="btn m-3 btn-warning shadow">
+                Close</button></router-link>
 
 
         <div class="card shadow">
@@ -56,10 +56,8 @@
             }
         }
     }
-
 </script>
 
 
 <style>
-
 </style>

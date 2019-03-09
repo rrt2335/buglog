@@ -38,7 +38,7 @@
         },
         computed: {
             bugs() {
-                return this.$store.dispatch('bugs')
+                return this.$store.state.bugs
             }
         },
         methods: {
@@ -47,7 +47,6 @@
             }
         }
     }
-
 </script>
 
 
