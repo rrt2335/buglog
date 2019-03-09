@@ -1,6 +1,6 @@
 <template>
   <div class="home container-fluid">
-    <router-link to="/info">Go to info page</router-link>
+    <!-- <router-link to="/info">Go to info page</router-link> -->
     <!-- Input form below -->
     <form @submit.prevent="makeBug">
       <div class="form-group text-left ">
@@ -21,7 +21,6 @@
       <button type="submit" class="btn btn-warning shadow m-2">Submit</button>
       <button type="reset" class="btn btn-outline-warning shadow m-2">Clear</button>
     </form>
-    {{newBug.title}}
     <bugs></bugs>
   </div>
 </template>
@@ -45,7 +44,7 @@
     },
     computed: {
       bugs() {
-        return this.$store.state.cars
+        return this.$store.state.bugs
       }
     },
     methods: {

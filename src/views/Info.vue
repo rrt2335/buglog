@@ -21,8 +21,8 @@
             }
         },
         computed: {
-            foodItem() {
-                return this.$store.state.bugs.find(b => b.ndb_no == this.id) || {}
+            bugs() {
+                return this.$store.state.bugs.find(bug => bug.ndb_no == this.id) || {}
             }
         },
         methods: {},

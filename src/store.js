@@ -40,17 +40,11 @@ export default new Vuex.Store({
           commit('setActiveBug', res.data)
         })
     },
-    // addBug({ commit, dispatch }, payload) {
-    //   _sandboxApi.post('bugs', payload)
-    //     .then(res => {
-    //       dispatch('getBugs')
-    //       router.push({ name: 'Info', params: { id: res.data.data._id } })
-    //     })
-    // },
     addBug({ commit, dispatch }, payload) {
       _sandboxApi.post('bugs', payload)
         .then(res => {
-          dispatch('initialize')
+          dispatch('getBugs')
+          router.push({ name: 'Info', params: { id: res.data.data._id } })
         })
     },
     editBug({ commit, dispatch }, payload) {

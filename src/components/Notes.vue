@@ -1,16 +1,15 @@
 <template>
     <div class="notes">
-        <button class="btn m-3 btn-warning">
-            <router-link to="/"><i class="fas fa-angle-left"></i></router-link>
-        </button>
         <div class="card d-flex shadow">
             <div class="card-body text-left">
-                <h5 class="card-title"><b>User Authentication</b></h5>
+                <h5 class="card-title"><b>(BUG TITLE)</b></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Reported by: (USER NAME)</h6>
                 <p class="card-text">This is where the bug's description will go.</p>
             </div>
         </div>
-        <button type="submit" class="btn btn-warning shadow m-3">Close</button>
+        <router-link to="/"><button class="btn m-3 btn-warning">
+            Close</button></router-link>
+
 
         <div class="card shadow">
             <table class="table">
@@ -19,7 +18,7 @@
                         <th scope="col" class="w-25">User</th>
                         <th scope="col">Message</th>
                         <th scope="col">
-                            <button class="btn btn-success">Add</button>
+                            <button class="btn btn-success shadow">Add</button>
                         </th>
                     </tr>
                 </thead>
@@ -28,7 +27,7 @@
                         <td>(USER NAME)</th>
                         <td>(MESSAGE)</td>
                         <td>
-                            <button class="btn btn-danger">Delete</button>
+                            <button class="btn btn-danger shadow">Delete</button>
                         </td>
                     </tr>
                 </tbody>

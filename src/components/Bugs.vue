@@ -14,8 +14,11 @@
                     <tr v-for="bug in bugs" class="bg-success text-white">
                         <td class="w-25">{{Date()}}</th>
                         <td>{{bug.title}}</td>
-                        <td>{{bug.creator}}</td>
-                        <td>(STATUS)</td>
+                        <td><i class="fas fa-user"></i> {{bug.creator}}</td>
+                        <td>Active
+                            <router-link :to="{name: 'info', params: {id: bug.ndb_no}}">
+                                Details</router-link>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -35,7 +38,7 @@
         },
         computed: {
             bugs() {
-                return this.$store.state.bugs
+                return this.$store.dispatch('bugs')
             }
         },
         methods: {
