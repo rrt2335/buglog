@@ -5,17 +5,17 @@
     <form @submit.prevent="makeBug">
       <div class="form-group text-left ">
         <label>Which bug is giving you problems?</label>
-        <input v-model="newBug.title" type="text" class="form-control shadow" id="exampleInput"
+        <input v-model="newBug.title" type="text" class="form-control shadow" id="exampleInput1"
           placeholder="Name of bug..." required>
       </div>
       <div class="form-group text-left ">
         <label>Please give a detailed description of your bug:</label>
-        <input v-model="newBug.description" type="text" class="form-control shadow" id="exampleInput"
+        <input v-model="newBug.description" type="text" class="form-control shadow" id="exampleInput2"
           placeholder="Description..." required>
       </div>
       <div class="form-group text-left">
         <label>Write your name below:</label>
-        <input v-model="newBug.creator" type="text" class="form-control shadow" id="exampleInput" placeholder="Name..."
+        <input v-model="newBug.creator" type="text" class="form-control shadow" id="exampleInput3" placeholder="Name..."
           required>
       </div>
       <button type="submit" class="btn btn-warning shadow m-2">Submit</button>
@@ -65,4 +65,9 @@
     color: white;
     text-shadow: 0 2px 0 black;
   }
+
+#exampleInput2 {
+  height: 75px;
+}
+
 </style>

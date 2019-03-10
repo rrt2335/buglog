@@ -1,15 +1,9 @@
 <template>
     <div class="notes">
-        <div class="card d-flex shadow">
-            <div class="card-body text-left">
-                <h5 class="card-title"><b>(BUG TITLE)</b></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Reported by: (USER NAME)</h6>
-                <p class="card-text">This is where the bug's description will go.</p>
-            </div>
-        </div>
-        <router-link to="/"><button class="btn m-3 btn-warning shadow">
-                Close</button></router-link>
 
+        <router-link to="/"><button class="btn m-3 btn-warning shadow">
+                Go back</button></router-link>
+        <button @click="confirmClose" class="btn btn-danger shadow">Close bug</button>
 
         <div class="card shadow">
             <table class="table">
@@ -23,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-success text-white">
+                    <tr>
                         <td>(USER NAME)</th>
                         <td>(MESSAGE)</td>
                         <td>
@@ -53,6 +47,9 @@
         methods: {
             setActiveNote(notes) {
                 this.activeNote = notes;
+            },
+            confirmClose() {
+                confirm("Are you sure you want to close this bug? This cannot be undone.")
             }
         }
     }

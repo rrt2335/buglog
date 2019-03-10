@@ -9,6 +9,7 @@ let _sandboxApi = Axios.create({
 })
 
 Vue.use(Vuex)
+Vue.use(require('vue-moment'))
 
 export default new Vuex.Store({
   state: {
@@ -20,11 +21,11 @@ export default new Vuex.Store({
     setBugs(state, data) {
       state.bugs = data
     },
-    setActiveBug(state, data) {
-      state.activeBug = data
-    },
     setNotes(state, data) {
       state.notes = data
+    },
+    setActiveBug(state, data) {
+      state.activeBug = data
     }
   },
   actions: {
@@ -34,8 +35,14 @@ export default new Vuex.Store({
           commit('setBugs', res.data.results)
         })
     },
+    getNotes({ commit, dispatch }) {
+      _sandboxApi.get('notes')
+        .then(res => {
+          commit('setNotes', res.data.results)
+        })
+    },
     getBug({ commit, dispatch }, payload) {
-      _sandboxApi.get('bugs/' + payload)
+      _sandboxApi.get('bugs/:id' + payload)
         .then(res => {
           commit('setActiveBug', res.data)
         })
@@ -44,6 +51,13 @@ export default new Vuex.Store({
       _sandboxApi.post('bugs', payload)
         .then(res => {
           dispatch('getBugs')
+          router.push({ name: 'Info', params: { id: res.data.data._id } })
+        })
+    },
+    addNote({ commit, dispatch }, payload) {
+      _sandboxApi.post('notes', payload)
+        .then(res => {
+          dispatch('getNotes')
           router.push({ name: 'Info', params: { id: res.data.data._id } })
         })
     },

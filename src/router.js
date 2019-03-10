@@ -12,7 +12,7 @@ export default new Router({
       name: 'home',
       component: Home
     },{
-      path: '/info',
+      path: '/info/',
       name: 'info',
       component: Info
     },{

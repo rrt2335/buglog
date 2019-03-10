@@ -11,13 +11,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="bug in bugs" class="bg-success text-white">
-                        <td class="w-25">{{Date()}}</th>
+                    <tr @click="setActiveBug(bug)" v-for="bug in bugs" class="bug-slots bg-success text-white">
+                        <td class="w-25">{{bug.createdAt}}</th>
                         <td>{{bug.title}}</td>
                         <td><i class="fas fa-user"></i> {{bug.creator}}</td>
                         <td>Active
-                            <router-link :to="{name: 'info', params: {id: bug.ndb_no}}">
-                                Details</router-link>
+                            <router-link :to="{name: 'info', params: {_id: bug.ndb_no}}">
+                               Details</router-link>
                         </td>
                     </tr>
                 </tbody>
@@ -42,7 +42,7 @@
             }
         },
         methods: {
-            setActiveBug(bugs) {
+            setActiveBug(bug) {
                 this.activeBug = bugs;
             }
         }
@@ -51,7 +51,8 @@
 
 
 <style>
-    tr {
+    .bug-slots:hover{
         cursor: pointer;
+        box-shadow: 0 0 20px white;
     }
 </style>
