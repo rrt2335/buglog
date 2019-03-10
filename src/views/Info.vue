@@ -12,7 +12,7 @@
         </div>
         <router-link to="/"><button class="btn m-3 btn-primary shadow">
                 Go back</button></router-link>
-        <button @click="confirmClose" class="btn btn-danger shadow">Close bug</button>
+        <button @click="confirmClose" class="btn btn-danger shadow">Mark as completed</button>
 
         <form @submit.prevent="makeNote">
             <div class="form-group text-left">

@@ -34,12 +34,13 @@ export default new Vuex.Store({
           commit('setBugs', res.data.results)
         })
     },
-    // getNotes({ commit, dispatch }) {
-    //   _sandboxApi.get('notes')
-    //     .then(res => {
-    //       commit('setNotes', res.data.results)
-    //     })
-    // },
+    getNotes({ commit, dispatch }) {
+      let id = this.state.activeBug._id
+      _sandboxApi.get(`${id}/notes`)
+        .then(res => {
+          commit('setNotes', res.data.results)
+        })
+    },
     getBug({ commit, dispatch }, payload) {
       _sandboxApi.get('/:id' + payload)
         .then(res => {
@@ -57,10 +58,11 @@ export default new Vuex.Store({
         })
     },
     addNote({ commit, dispatch }, payload) {
-      _sandboxApi.post('', payload)
+      let id = this.state.activeBug._id
+      _sandboxApi.post(`${id}/notes`, payload)
         .then(res => {
-          dispatch('getNotes')
-          router.push({ name: 'Info', params: { id: res.data.data._id } })
+          this.dispatch('getNotes')
+          // router.push({ name: 'Info', params: { id: res.data.data._id } })
         })
     },
     editBug({ commit, dispatch }, payload) {

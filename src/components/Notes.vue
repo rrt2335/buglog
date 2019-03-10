@@ -14,8 +14,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="note in notes">
-                        <td>{{note.creator}}</th>
-                        <td>(MESSAGE)</td>
+                        <td>{{notes.creator}}</th>
+                        <td>{{notes.content}}</td>
                         <td>
                             <button class="btn btn-danger shadow">Delete</button>
                         </td>

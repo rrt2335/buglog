@@ -16,7 +16,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    background-color:rgb(97, 104, 104);
+    background-image: url("https://superdevresources.com/wp-content/uploads/2014/11/black-metal-grill-texture-vector.jpg");
+    background-attachment: fixed;
     
   }
   .title {
