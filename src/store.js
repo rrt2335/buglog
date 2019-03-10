@@ -9,7 +9,6 @@ let _sandboxApi = Axios.create({
 })
 
 Vue.use(Vuex)
-Vue.use(require('vue-moment'))
 
 export default new Vuex.Store({
   state: {
@@ -58,7 +57,7 @@ export default new Vuex.Store({
         })
     },
     addNote({ commit, dispatch }, payload) {
-      _sandboxApi.post('notes', payload)
+      _sandboxApi.post('', payload)
         .then(res => {
           dispatch('getNotes')
           router.push({ name: 'Info', params: { id: res.data.data._id } })
@@ -70,7 +69,13 @@ export default new Vuex.Store({
           dispatch('getBugs')
         })
     },
-    deleteBug({ commit, dispatch }, payload) {
+    closeBug({ commit, dispatch }, payload) {
+      _sandboxApi.delete('bugs/' + payload._id)
+        .then(res => {
+          dispatch('getBugs')
+        })
+    },
+    deleteNote({ commit, dispatch }, payload) {
       _sandboxApi.delete('bugs/' + payload._id)
         .then(res => {
           dispatch('getBugs')

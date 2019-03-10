@@ -1,26 +1,32 @@
 <template>
     <div class="info container-fluid">
-        <form @submit.prevent="makeNote">
-            <div class="form-group text-left">
-                <label>Write your name below:</label>
-                <input v-model="newNote.creator" class="form-control shadow" type="text" placeholder="Name..." required>
-            </div>
-            <div class="form-group text-left">
-                <label>Provide a note in response to this bug:</label>
-                <input v-model="newNote.content" class="form-control shadow" id="exampleInput" type="text"
-                    placeholder="Your note..." required>
-            </div>
-            <button type="submit" class="btn btn-primary m-2 shadow">Post</button>
-        </form>
+
         <div class="card d-flex shadow">
             <div class="card-body text-left">
                 <h6 class="card-text" id="status"><b>Active</b></h6>
                 <h4 class="card-title"><b>{{bugs.title}}</b></h4>
                 <h6 class="card-subtitle mb-2 text-muted">Reported by: {{bugs.creator}}</h6>
                 <p class="card-text">{{bugs.description}}</p>
-                <p class="card-text footer">Last updated on: {{bugs.updatedAt}}<br>Created on: {{bugs.createdAt}}</p>
+                <p class="card-text footer">Last updated on: {{bugs.updatedAt | formatTime}}<br>Created on: {{bugs.createdAt | formatTime}}</p>
             </div>
         </div>
+        <router-link to="/"><button class="btn m-3 btn-primary shadow">
+                Go back</button></router-link>
+        <button @click="confirmClose" class="btn btn-danger shadow">Close bug</button>
+
+        <form @submit.prevent="makeNote">
+            <div class="form-group text-left">
+                <label>Type your name below:</label>
+                <input v-model="newNote.creator" class="form-control shadow" type="text" placeholder="Name..." required>
+            </div>
+            <div class="form-group text-left">
+                <label>Write a note in response to this bug:</label>
+                <input v-model="newNote.content" class="form-control shadow" id="exampleInput" type="text"
+                    placeholder="Your note..." required>
+            </div>
+            <button type="submit" class="btn btn-warning m-2 shadow">Post</button>
+            <button type="reset" class="btn btn-outline-warning m-2 shadow">Clear</button>
+        </form>
         <notes></notes>
 
     </div>
@@ -29,6 +35,7 @@
 <script>
     import Bugs from '@/components/Bugs.vue'
     import Notes from '@/components/Notes.vue'
+    import Moment from 'moment'
     export default {
         name: 'Info',
         props: ['id'],
@@ -52,11 +59,19 @@
             makeNote() {
                 console.log(this.newNote)
                 this.$store.dispatch("addNote", this.newNote);
+            },
+            confirmClose() {
+                confirm("Are you sure you want to close this bug? This cannot be undone.")
             }
         },
         components: {
             Bugs,
             Notes
+        },
+        filters: {
+            formatTime(date) {
+                return Moment(String(date)).format('MM/DD/YYYY, LT')
+            }
         }
     }
 </script>
@@ -69,7 +84,8 @@
     #exampleInput {
         height: 75px;
     }
-    #status{
+
+    #status {
         color: rgb(3, 189, 3);
     }
 </style>

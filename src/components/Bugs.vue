@@ -12,7 +12,7 @@
                 </thead>
                 <tbody>
                     <tr @click="setActiveBug(bug), $router.push({name: 'info', params:{id: bug._id}})" v-for="bug in bugs" class="bug-slots bg-success text-white">
-                        <td class="w-25">{{bug.createdAt}}</th>
+                        <td class="w-25">{{bug.createdAt | formatTime}}</th>
                         <td>{{bug.title}}</td>
                         <td><i class="fas fa-user"></i> {{bug.creator}}</td>
                         <td>Active</td>
@@ -25,6 +25,7 @@
 
 
 <script>
+    import Moment from 'moment'
     export default {
         name: 'Bugs',
         props: ['bugData'],
@@ -41,6 +42,11 @@
         methods: {
             setActiveBug(bug) {
                 this.$store.dispatch('setActiveBug', bug)
+            }
+        },
+        filters: {
+            formatTime(date) {
+                return Moment(String(date)).format('MM/DD/YYYY, LT')
             }
         }
     }
