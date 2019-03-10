@@ -14,8 +14,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="note in notes">
-                        <td>{{notes.creator}}</th>
-                        <td>{{notes.content}}</td>
+                        <td>{{note.creator}}</th>
+                        <td>{{note.content}}</td>
                         <td>
                             <button class="btn btn-danger shadow">Delete</button>
                         </td>
@@ -37,8 +37,8 @@
             }
         },
         computed: {
-            results() {
-                return this.$store.state.notes
+            notes() {
+                return this.$store.state.notes;
             }
         },
         methods: {
