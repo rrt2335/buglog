@@ -4,7 +4,7 @@ import Axios from 'axios'
 import router from './router.js'
 
 let _sandboxApi = Axios.create({
-  baseURL: 'https://bcw-sandbox.herokuapp.com/api/ryan',
+  baseURL: 'https://bcw-sandbox.herokuapp.com/api/ryan/bugs',
   timeout: 3000
 })
 
@@ -30,25 +30,28 @@ export default new Vuex.Store({
   },
   actions: {
     getBugs({ commit, dispatch }) {
-      _sandboxApi.get('bugs')
+      _sandboxApi.get('')
         .then(res => {
           commit('setBugs', res.data.results)
         })
     },
-    getNotes({ commit, dispatch }) {
-      _sandboxApi.get('notes')
-        .then(res => {
-          commit('setNotes', res.data.results)
-        })
-    },
+    // getNotes({ commit, dispatch }) {
+    //   _sandboxApi.get('notes')
+    //     .then(res => {
+    //       commit('setNotes', res.data.results)
+    //     })
+    // },
     getBug({ commit, dispatch }, payload) {
-      _sandboxApi.get('bugs/:id' + payload)
+      _sandboxApi.get('/:id' + payload)
         .then(res => {
           commit('setActiveBug', res.data)
         })
     },
+    setActiveBug({ commit, dispatch }, payload) {
+      commit('setActiveBug', payload)
+    },
     addBug({ commit, dispatch }, payload) {
-      _sandboxApi.post('bugs', payload)
+      _sandboxApi.post('', payload)
         .then(res => {
           dispatch('getBugs')
           router.push({ name: 'Info', params: { id: res.data.data._id } })

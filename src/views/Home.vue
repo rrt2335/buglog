@@ -3,12 +3,12 @@
     <!-- <router-link to="/info">Go to info page</router-link> -->
     <!-- Input form below -->
     <form @submit.prevent="makeBug">
-      <div class="form-group text-left ">
+      <div class="form-group text-left">
         <label>Which bug is giving you problems?</label>
         <input v-model="newBug.title" type="text" class="form-control shadow" id="exampleInput1"
           placeholder="Name of bug..." required>
       </div>
-      <div class="form-group text-left ">
+      <div class="form-group text-left">
         <label>Please give a detailed description of your bug:</label>
         <input v-model="newBug.description" type="text" class="form-control shadow" id="exampleInput2"
           placeholder="Description..." required>
