@@ -11,11 +11,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr @click="setActiveBug(bug), $router.push({name: 'info', params:{id: bug._id}})" v-for="bug in bugs" class="bug-slots bg-success text-white">
+                    <tr @click="setActiveBug(bug), $router.push({name: 'info', params:{id: bug._id}})" v-for="bug in bugs" class="bug-slots text-white" :class="{'bg-success': !bug.closed, 'bg-danger': bug.closed}">
                         <td class="w-25">{{bug.createdAt | formatTime}}</th>
                         <td>{{bug.title}}</td>
                         <td><i class="fas fa-user"></i> {{bug.creator}}</td>
-                        <td>Active</td>
+                        <td v-if="!bug.closed">Active</td>
+                        <td v-else-if="bug.closed">Inactive</td>
                     </tr>
                 </tbody>
             </table>

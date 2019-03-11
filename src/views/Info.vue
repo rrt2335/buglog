@@ -3,16 +3,18 @@
 
         <div class="card d-flex shadow">
             <div class="card-body text-left">
-                <h6 class="card-text" id="status"><b>Active</b></h6>
+                <h6 class="card-text" id="active" v-if="!bugs.closed"><b>Active</b></h6>
+                <h6 class="card-text" id="inactive" v-else-if="bugs.closed"><b>Inactive</b></h6>
                 <h4 class="card-title"><b>{{bugs.title}}</b></h4>
                 <h6 class="card-subtitle mb-2 text-muted">Reported by: {{bugs.creator}}</h6>
                 <p class="card-text">{{bugs.description}}</p>
-                <p class="card-text footer">Last updated on: {{bugs.updatedAt | formatTime}}<br>Created on: {{bugs.createdAt | formatTime}}</p>
+                <p class="card-text footer">Last updated on: {{bugs.updatedAt | formatTime}}<br>Created on:
+                    {{bugs.createdAt | formatTime}}</p>
             </div>
         </div>
         <router-link to="/"><button class="btn m-3 btn-primary shadow">
                 Go back</button></router-link>
-        <button @click="confirmClose" class="btn btn-danger shadow">Mark as completed</button>
+        <button v-show="!bugs.closed" @click="confirmClose" class="btn btn-danger shadow">Mark as completed</button>
 
         <form @submit.prevent="makeNote">
             <div class="form-group text-left">
@@ -61,7 +63,10 @@
                 this.$store.dispatch("addNote", this.newNote);
             },
             confirmClose() {
-                confirm("Are you sure you want to close this bug? This cannot be undone.")
+                if (confirm("Are you sure you want to close this bug? This cannot be undone.")) {
+                    alert("You have marked this bug as complete.")
+                    this.$store.dispatch("closeBug", this.bugs)
+                }
             }
         },
         components: {
@@ -84,8 +89,10 @@
     #exampleInput {
         height: 75px;
     }
-
-    #status {
+    #active{
         color: rgb(3, 189, 3);
+    }
+    #inactive{
+        color: red;
     }
 </style>

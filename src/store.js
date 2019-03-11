@@ -72,7 +72,7 @@ export default new Vuex.Store({
         })
     },
     closeBug({ commit, dispatch }, payload) {
-      _sandboxApi.delete('bugs/' + payload._id)
+      _sandboxApi.delete(payload._id)
         .then(res => {
           dispatch('getBugs')
         })
