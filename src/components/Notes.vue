@@ -17,7 +17,7 @@
                         <td>{{note.creator}}</th>
                         <td>{{note.content}}</td>
                         <td>
-                            <button class="btn btn-danger shadow">Delete</button>
+                            <button @click="deleteNote(note)" class="btn btn-danger shadow">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -44,6 +44,9 @@
         methods: {
             setActiveNote(notes) {
                 this.activeNote = notes;
+            },
+            deleteNote(note){
+                this.$store.dispatch('deleteNote', note)
             }
         }
     }

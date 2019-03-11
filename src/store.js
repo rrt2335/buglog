@@ -78,9 +78,10 @@ export default new Vuex.Store({
         })
     },
     deleteNote({ commit, dispatch }, payload) {
-      _sandboxApi.delete('bugs/' + payload._id)
+      let id = this.state.activeBug._id
+      _sandboxApi.delete(`${id}/notes/${payload._id}`)
         .then(res => {
-          dispatch('getBugs')
+          dispatch('getNotes')
         })
     }
   }
