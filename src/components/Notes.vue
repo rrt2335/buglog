@@ -7,14 +7,11 @@
                     <tr>
                         <th scope="col" class="w-25">User</th>
                         <th scope="col">Message</th>
-                        <th scope="col">
-                            <button class="btn btn-success shadow">Add</button>
-                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="note in notes">
-                        <td>{{note.creator}}</th>
+                        <td><i class="fas fa-user"></i> {{note.creator}}</th>
                         <td>{{note.content}}</td>
                         <td>
                             <button @click="deleteNote(note)" class="btn btn-danger shadow">Delete</button>

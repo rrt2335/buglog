@@ -4,7 +4,7 @@
         <div class="card d-flex shadow">
             <div class="card-body text-left">
                 <h6 class="card-text" id="active" v-if="!bugs.closed"><b>Active</b></h6>
-                <h6 class="card-text" id="inactive" v-else-if="bugs.closed"><b>Inactive</b></h6>
+                <h6 class="card-text" id="inactive" v-else-if="bugs.closed"><b>Closed</b></h6>
                 <h4 class="card-title"><b>{{bugs.title}}</b></h4>
                 <h6 class="card-subtitle mb-2 text-muted">Reported by: {{bugs.creator}}</h6>
                 <p class="card-text">{{bugs.description}}</p>
@@ -16,7 +16,7 @@
                 Go back</button></router-link>
         <button v-show="!bugs.closed" @click="confirmClose" class="btn btn-danger shadow">Mark as completed</button>
 
-        <form @submit.prevent="makeNote">
+        <form v-show="!bugs.closed" @submit.prevent="makeNote">
             <div class="form-group text-left">
                 <label>Type your name below:</label>
                 <input v-model="newNote.creator" class="form-control shadow" type="text" placeholder="Name..." required>
@@ -42,7 +42,8 @@
         name: 'Info',
         props: ['id'],
         mounted() {
-            this.$store.dispatch('getBugs')
+            this.$store.dispatch('getActiveBug'),
+                this.$store.dispatch('getNotes')
         },
         data() {
             return {
@@ -64,7 +65,6 @@
             },
             confirmClose() {
                 if (confirm("Are you sure you want to close this bug? This cannot be undone.")) {
-                    alert("You have marked this bug as complete.")
                     this.$store.dispatch("closeBug", this.bugs)
                 }
             }
@@ -89,10 +89,12 @@
     #exampleInput {
         height: 75px;
     }
-    #active{
+
+    #active {
         color: rgb(3, 189, 3);
     }
-    #inactive{
+
+    #inactive {
         color: red;
     }
 </style>

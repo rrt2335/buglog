@@ -16,7 +16,7 @@
                         <td>{{bug.title}}</td>
                         <td><i class="fas fa-user"></i> {{bug.creator}}</td>
                         <td v-if="!bug.closed">Active</td>
-                        <td v-else-if="bug.closed">Inactive</td>
+                        <td v-else-if="bug.closed">Closed</td>
                     </tr>
                 </tbody>
             </table>
