@@ -42,8 +42,11 @@
         name: 'Info',
         props: ['id'],
         mounted() {
-            this.$store.dispatch('getActiveBug'),
-                this.$store.dispatch('getNotes')
+            if (this.$store.state.bugs.length == 0) {
+                this.$store.dispatch('getActiveBug')
+            }
+            this.$store.dispatch('getBug', id),
+                this.$store.dispatch('getNotes', id)
         },
         data() {
             return {
