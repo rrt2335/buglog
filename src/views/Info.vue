@@ -45,8 +45,8 @@
             if (this.$store.state.bugs.length == 0) {
                 this.$store.dispatch('getActiveBug')
             }
-            this.$store.dispatch('getBug', id),
-                this.$store.dispatch('getNotes', id)
+            this.$store.dispatch('getBug', this.id),
+            this.$store.dispatch('getNotes', this.id)
         },
         data() {
             return {

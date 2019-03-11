@@ -34,17 +34,16 @@ export default new Vuex.Store({
           commit('setBugs', res.data.results)
         })
     },
-    getNotes({ commit, dispatch }) {
-      let id = this.state.activeBug._id
+    getNotes({ commit, dispatch }, id) {
       _sandboxApi.get(`${id}/notes`)
         .then(res => {
           commit('setNotes', res.data.results)
         })
     },
     getBug({ commit, dispatch }, payload) {
-      _sandboxApi.get('/:id' + payload)
+      _sandboxApi.get('/' + payload)
         .then(res => {
-          commit('setActiveBug', res.data)
+          commit('setActiveBug', res.data.results)
         })
     },
     setActiveBug({ commit, dispatch }, payload) {
