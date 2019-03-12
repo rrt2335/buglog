@@ -63,6 +63,7 @@
         },
         methods: {
             makeNote() {
+                this.newNote.bugId = this.id
                 console.log(this.newNote)
                 this.$store.dispatch("addNote", this.newNote);
             },

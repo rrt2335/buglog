@@ -57,10 +57,9 @@ export default new Vuex.Store({
         })
     },
     addNote({ commit, dispatch }, payload) {
-      let id = this.state.activeBug._id
-      _sandboxApi.post(`${id}/notes`, payload)
+      _sandboxApi.post('/' + payload.bugId + "/notes", payload)
         .then(res => {
-          this.dispatch('getNotes')
+          dispatch('getNotes', payload.bugId)
           // router.push({ name: 'Info', params: { id: res.data.data._id } })
         })
     },
@@ -77,10 +76,9 @@ export default new Vuex.Store({
         })
     },
     deleteNote({ commit, dispatch }, payload) {
-      let id = this.state.activeBug._id
-      _sandboxApi.delete(`${id}/notes/${payload._id}`)
+      _sandboxApi.delete(`${this.state.activeBug._id}/notes/${payload._id}`)
         .then(res => {
-          dispatch('getNotes')
+          dispatch('getNotes', this.state.activeBug._id)
         })
     }
   }
