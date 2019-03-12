@@ -14,7 +14,7 @@
                         <td><i class="fas fa-user"></i> {{note.creator}}</th>
                         <td>{{note.content}}</td>
                         <td>
-                            <button @click="deleteNote(note)" class="btn btn-danger shadow">Delete</button>
+                            <button v-show="!bugs.closed" @click="deleteNote(note)" class="btn btn-danger shadow">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -34,6 +34,9 @@
             }
         },
         computed: {
+            bugs() {
+                return this.$store.state.activeBug || {}
+            },
             notes() {
                 return this.$store.state.notes;
             }
