@@ -10,7 +10,7 @@
       </div>
       <div class="form-group text-left">
         <label>Please give a detailed description of your bug:</label>
-        <input v-model="newBug.description" type="text" class="form-control shadow" id="exampleInput2"
+        <input v-model="newBug.description" type="text" class="form-control shadow input-lg" id="exampleInput2"
           placeholder="Description..." required>
       </div>
       <div class="form-group text-left">
@@ -65,9 +65,4 @@
     color: white;
     text-shadow: 0 2px 0 black;
   }
-
-#exampleInput2 {
-  height: 75px;
-}
-
 </style>
