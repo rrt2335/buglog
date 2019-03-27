@@ -2,7 +2,7 @@
     <div class="bugs">
         <div class="card shadow">
             <table class="table">
-                <thead class="bg-light">
+                <thead class="table-header">
                     <tr>
                         <th scope="col">Date created</th>
                         <th scope="col">Title</th>
@@ -58,5 +58,8 @@
     .bug-slots:hover {
         cursor: pointer;
         box-shadow: 0 0 20px white;
+    }
+    .table-header {
+        background-color: lightgrey;
     }
 </style>
